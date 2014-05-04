@@ -1,3 +1,5 @@
+import markdown
+
 from django.db import models
 
 
@@ -27,6 +29,7 @@ class Page(TimeStampedModel):
         """
         Generate html from the markdown content.
         """
+        self.html_content = markdown.markdown(self.content)
         super(Page, self).save(*args, **kwargs)
 
     def __unicode__(self):
